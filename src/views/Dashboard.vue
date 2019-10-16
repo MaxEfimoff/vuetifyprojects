@@ -7,10 +7,14 @@
         <v-btn @click="sortBy('title')" small text color="grey">
           <v-icon left small>mdi-folder</v-icon>
           <span class="caption text-lowercase">By Project name</span>
+          <v-icon left small class="ml-1" v-if="this.isAscendingTitle === false">mdi-chevron-down</v-icon>
+          <v-icon left small class="ml-1" v-if="this.isAscendingTitle === true">mdi-chevron-up</v-icon>
         </v-btn>
         <v-btn @click="sortBy('person')" small text color="grey">
           <v-icon left small>mdi-account</v-icon>
           <span class="caption text-lowercase">By Person</span>
+          <v-icon left small class="ml-1" v-if="this.isAscendingPerson === false">mdi-chevron-down</v-icon>
+          <v-icon left small class="ml-1" v-if="this.isAscendingPerson === true">mdi-chevron-up</v-icon>
         </v-btn>
       </v-layout>
       <v-card v-for="project in projects" :key="project.title" row :class="`pa-3 project ${project.status}`">
@@ -36,7 +40,6 @@
         <!-- <v-divider /> -->
       </v-card>
     </v-container>
-
   </div>
 </template>
 
@@ -45,18 +48,50 @@
 export default {
   data() {
     return {
+      isAscendingTitle: null,
+      isAscendingPerson: null,
       projects: [
-        {title: 'Design front page', person: 'Max Efi', due: '01/01/2020', status: 'complete'},
-        {title: 'Design backend', person: 'Dan Myers', due: '16/02/2020', status: 'overdue'},
-        {title: 'Design video thumbinals', person: 'Jhon Doe', due: '12/03/2020', status: 'ongoing'},
-        {title: 'Create forum', person: 'Max Efi', due: '01/03/2020', status: 'ongoing'},
+        {title: 'Design front page', person: '1', due: '01/01/2020', status: 'complete'},
+        {title: 'Design backend', person: '3', due: '16/02/2020', status: 'overdue'},
+        {title: 'Publish video thumbinals', person: '6', due: '12/03/2020', status: 'ongoing'},
+        {title: 'Create forum', person: '9', due: '01/03/2020', status: 'ongoing'},
       ]
     }
   },
   methods: {
     sortBy(prop) {
-      this.projects.sort((a, b) => a[prop] < b[prop] ? -1 : 1)
-    }
+      if(prop === 'title') {
+        if(!this.isAscendingTitle) {
+        this.projects.sort((a, b) => {
+            return a[prop] < b[prop] ? -1 : 1
+          })
+          this.isAscendingTitle = true
+          this.isAscendingPerson = null
+          
+        } else {
+          this.projects.sort((a, b) => {
+            return a[prop] < b[prop] ? 1 : -1
+          })
+          this.isAscendingTitle = false
+          this.isAscendingPerson = null
+        }
+      } else if(prop === 'person') {
+        if(!this.isAscendingPerson) {
+        this.projects.sort((a, b) => {
+            return a[prop] < b[prop] ? -1 : 1
+          })
+          this.isAscendingPerson = true
+          this.isAscendingTitle = null
+          
+        } else {
+          this.projects.sort((a, b) => {
+            return a[prop] < b[prop] ? 1 : -1
+          })
+          this.isAscendingPerson = false
+          this.isAscendingTitle = null
+        }
+      }
+    },
   }
 };
 </script>
