@@ -51,10 +51,10 @@ export default {
       isAscendingTitle: null,
       isAscendingPerson: null,
       projects: [
-        {title: 'Design front page', person: '1', due: '01/01/2020', status: 'complete'},
-        {title: 'Design backend', person: '3', due: '16/02/2020', status: 'overdue'},
-        {title: 'Publish video thumbinals', person: '6', due: '12/03/2020', status: 'ongoing'},
-        {title: 'Create forum', person: '9', due: '01/03/2020', status: 'ongoing'},
+        {title: 'Design front page', person: 'Max Efi', due: '01/01/2020', status: 'complete'},
+        {title: 'Design backend', person: 'John Doe', due: '16/02/2020', status: 'overdue'},
+        {title: 'Publish video thumbinals', person: 'Will Smith', due: '12/03/2020', status: 'ongoing'},
+        {title: 'Create forum', person: 'Adam Yates', due: '01/03/2020', status: 'ongoing'},
       ]
     }
   },
