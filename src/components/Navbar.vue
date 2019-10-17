@@ -16,6 +16,16 @@
     </v-toolbar>
 
     <v-navigation-drawer v-model="drawer" app class="primary">
+      <v-layout column align-center>
+        <v-flex class="mt-5">
+          <v-avatar size="100">
+            <img src="/avatar-5.png" alt="">
+          </v-avatar>
+          <p class="white--text subheading mt-3">
+            Max Efi
+          </p>
+        </v-flex>
+      </v-layout>
       <v-list>
         <v-list-item class="white--text" v-for="link in links" :key="link.text" router :to="link.route">
           <v-list-item-action>
